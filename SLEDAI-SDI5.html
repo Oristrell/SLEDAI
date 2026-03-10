@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>SLE Calculators – SLEDAI-2K and SDI</title>
+
+<style>
+
+body{
+background:#87CEEB;
+font-family:Arial, sans-serif;
+margin:0;
+padding:40px 0;
+}
+
+.logo {
+  max-width: 60px;           /* adjust size as needed */
+  height: auto;
+}
+
+.container{
+background:#fffde7;
+width:1200px;
+max-width:95%;
+margin:auto;
+padding:30px;
+border-radius:12px;
+box-shadow:0 8px 20px rgba(0,0,0,0.15);
+}
+
+.title{
+font-size:26px;
+font-weight:bold;
+color:#B22222;
+margin-bottom:30px;
+text-align:center;
+text-decoration:underline;
+}
+
+.titleGrid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:40px;
+margin-bottom:5px;
+}
+
+.scoretitle{
+font-size:20px;
+font-weight:bold;
+color:#3366cc;
+background:#e6f0ff;
+border:2px solid #3366cc;
+border-radius:8px;
+padding:10px 14px;
+display: inline-block;
+justify-self:center;
+margin-bottom:25px;
+}
+
+.subtitleGrid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:40px;
+margin-bottom:18px;
+}
+
+.timesubtitle{
+text-align:center;
+font-weight:bold;
+color:#555;
+font-size:20px;
+font-style:italic;
+}
+
+.organ{
+margin-bottom:10px;
+padding-top:15px;
+border-top:2px solid #ddd;
+}
+
+.organTitle{
+font-size:19px;
+font-weight:bold;
+color:#B22222;
+text-align:center;
+margin-top:5px;
+margin-bottom:14px;
+}
+
+.organGrid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:20px;
+}
+
+.organGrid > div {
+    padding-left: 1.5cm; /* adds ~0.5 cm space on the left of each column */
+}
+
+.divider{
+border:none;
+border-top:2px solid #888;
+margin:10px 0 25px 0;
+}
+
+.columnTitle{
+font-weight:bold;
+color:#3366cc;
+margin-bottom:8px;
+}
+
+.organGrid label{
+display:block;
+margin-bottom:5px;
+}
+
+fieldset{
+margin-top:8px;
+margin-bottom:12px;
+}
+
+button{
+padding:10px 20px;
+font-size:15px;
+border:none;
+border-radius:6px;
+background:#3366cc;
+color:white;
+cursor:pointer;
+margin-right:10px;
+margin-top:15px;
+}
+
+button:hover{
+opacity:0.85;
+}
+
+.result{
+font-size:20px;
+font-weight:bold;
+margin-top:15px;
+}
+
+.resultContainer {
+    text-align: center;
+    margin: 15px 0;  /* spacing above and below */
+}
+
+.result, #sledaiActivity {
+    display: block;
+    margin: 8px 0;   /* spacing between result lines */
+}
+
+.badge{
+display:inline-block;
+padding:4px 10px;
+border-radius:8px;
+margin-top:10px;
+font-weight:bold;
+margin-left: 10px;
+vertical-align: middle;
+}
+
+.remission{background:#4CAF50;color:white;}
+.mild{background:#8BC34A;color:white;}
+.moderate{background:#FFC107;color:black;}
+.high{background:#FF9800;color:white;}
+.veryhigh{background:#F44336;color:white;}
+
+.reference{
+font-size:12px;
+color:#555;
+margin-top:40px;
+}
+
+@media(max-width:800px){
+.organGrid{
+grid-template-columns:1fr;
+}
+}
+
+/* Horizontal line separator */
+.sectionSeparator {
+    border: 0;
+    border-top: 2px solid #aaa;  /* line color and thickness */
+    margin: 20px 0;              /* vertical spacing */
+}
+
+/* Center buttons */
+.buttonContainer {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.buttonContainer button {
+    margin: 8px;  /* spacing between buttons */
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h2 class="title">
+  <a href="https://ormedica.wordpress.com">
+    <img src="LogOM5.png" alt="Logo" class="logo">
+  </a>
+  Systemic Lupus Erythematosus Calculators
+</h2>
+  
+<div class="titleGrid">
+
+<div class="scoretitle">
+  <h3>SLEDAI-2K (Disease Activity)</h3>
+</div>
+
+<div class="scoretitle">
+  <h3>SLICC/ACR Damage Index (SDI)</h3>
+</div>
+
+</div>
+
+<div class="subtitleGrid">
+
+<div class="timesubtitle">
+Actual (last 10 days)
+</div>
+
+<div class="timesubtitle">
+Persistent (≥ 6 months)
+</div>
+
+</div>
+
+<!-- ================= EYE ================= -->
+
+<div class="organ">
+
+<div class="organTitle">Eye</div>
+
+<div class="organGrid">
+
+<div>
+<label><input type="checkbox" value="8" class="sledai"> Visual disorder attributable to lupus (+8)</label>
+</div>
+
+<div>
+<label><input type="checkbox" value="1" class="sdi"> Cataract, ever (+1)</label>
+<label><input type="checkbox" value="1" class="sdi"> Retinal damage / optic atrophy (+1)</label>
+</div>
+</div>
+</div>
+
+
+<!-- ================= CNS ================= -->
+
+<div class="organ">
+
+<div class="organTitle">Central Nervous System</div>
+
+<div class="organGrid">
+
+<div>
+
+<label><input type="checkbox" value="8" class="sledai"> Seizures of recent onset, excluding other causes (+8)</label>
+<label><input type="checkbox" value="8" class="sledai"> Psychosis of non-pharmacologic cause (+8)</label>
+<label><input type="checkbox" value="8" class="sledai"> Organic brain syndrome (+8)</label>
+<label><input type="checkbox" value="8" class="sledai"> Cranial nerve disorder of recent onset (+8)</label>
+<label><input type="checkbox" value="8" class="sledai"> Headache attributable to lupus (+8)</label>
+<label><input type="checkbox" value="8" class="sledai"> Stroke of recent onset (+8)</label>
+
+</div>
+<div>
+<label><input type="checkbox" value="1" class="sdi"> Seizures (≥6 months)(+1)</label>
+<label><input type="checkbox" value="1" class="sdi"> Psychosis of non-pharmacologic cause (+1)</label>
+<label><input type="checkbox" value="1" class="sdi"> Cognitive impairment (+1)</label>
+<label><input type="checkbox" value="1" class="sdi"> Peripheral or cranial neuropathy (+1)</label>
+<label><input type="checkbox" value="1" class="sdi"> Transverse myelitis (+1)</label>
+<fieldset>
+<legend>Stroke</legend>
+<label><input type="radio" name="ictus" value="1" class="sdi"> One episode (+1)</label>
+<label><input type="radio" name="ictus" value="2" class="sdi"> >1 episode (+2)</label>
+</fieldset>
+
+</div>
+</div>
+</div>
+
+<!-- ================= SKIN ================= -->
+<div class="organ">
+<div class="organTitle">Skin & Mucosae</div>
+<div class="organGrid">
+
+<div>
+<label><input type="checkbox" value="2" class="sledai"> Rash of recent onset (+2)</label>
+<label><input type="checkbox" value="2" class="sledai"> Alopècia of recent onset, or recurrent (+2)</label>
+<label><input type="checkbox" value="2" class="sledai"> Oral or nasal ulcers (+2)</label>
+
+</div>
+<div>
+<label><input type="checkbox" value="1" class="sdi"> Scarring chronic alopecia (+1)</label>
+<label><input type="checkbox" value="1" class="sdi"> Extensive scarring or panniculum other than scalp and pulp space (+1)</label>
+<label><input type="checkbox" value="1" class="sdi"> Skin ulceration (not due to thrombosis) for more than 6 months (+1)</label>
+</div>
+</div>
+</div>
+
+<!-- ================= MUSCULOSKELETAL ================= -->
+<div class="organ">
+<div class="organTitle">Musculoskeletal</div>
+<div class="organGrid">
+<div>
+<label><input type="checkbox" value="4" class="sledai"> Arthritis (> 2 joints) (+4)</label>
+<label><input type="checkbox" value="4" class="sledai"> Myositis (+4)</label>
+
+</div>
+<div>
+<label><input type="checkbox" value="1" class="sdi"> Deforming or erosive arthritis (including reducible deformities) (+1)</label>
+<label><input type="checkbox" value="1" class="sdi"> Osteoporosis with fracture or vertebral collapse (+1) (+1)</label>
+<label><input type="checkbox" value="1" class="sdi"> Muscle atrophy or weakness (+1) (+1)</label>
+<label><input type="checkbox" value="1" class="sdi"> Osteomyelitis (+1)</label>
+<label><input type="checkbox" value="1" class="sdi"> Ruptured tendon (+1)</label>
+
+<fieldset>
+<legend>Avascular necrosis</legend>
+<label><input type="radio" name="avascular" value="1" class="sdi"> One site (+1)</label>
+<label><input type="radio" name="avascular" value="2" class="sdi"> >1 site (+2)</label>
+</fieldset>
+
+</div>
+</div>
+</div>
+
+
+<!-- ================= RENAL ================= -->
+
+<div class="organ">
+<div class="organTitle">Renal</div>
+<div class="organGrid">
+
+<div>
+
+<label><input type="checkbox" value="4" class="sledai"> Hematuria (+4)</label>
+<label><input type="checkbox" value="4" class="sledai"> Proteinuria >0.5 g/day of recent onset or higher than usual (+4)</label>
+<label><input type="checkbox" value="4" class="sledai"> Hematic or granular urinary casts (+4)</label>
+
+</div>
+
+<div>
+
+<label><input type="checkbox" value="1" class="sdi"> Proteinuria ≥3.5 g/day (+1)</label>
+
+<fieldset>
+<legend>Renal failure</legend>
+<label><input type="radio" name="renal" value="1" class="sdi"> GFR &lt;50% (+1)</label>
+<label><input type="radio" name="renal" value="3" class="sdi"> End-stage renal disease (+3)</label>
+</fieldset>
+
+</div>
+</div>
+</div>
+
+<!-- ================= CARDIOPULMONARY ================= -->
+
+<div class="organ">
+<div class="organTitle">Cardiovascular & Lung</div>
+<div class="organGrid">
+
+<div>
+<label><input type="checkbox" value="2" class="sledai"> Pleuritis (+2)</label>
+<label><input type="checkbox" value="2" class="sledai"> Pericarditis (+2)</label>
+</div>
+<div>
+
+<label><input type="checkbox" value="1" class="sdi"> Pulmonary hypertension (+1)</label>
+<label><input type="checkbox" value="1" class="sdi"> Pulmonary fibrosis (+1)</label>
+<label><input type="checkbox" value="1" class="sdi"> Shrinking lung (+1)</label>
+<label><input type="checkbox" value="1" class="sdi"> Pleural fibrosis (+1)</label>
+<label><input type="checkbox" value="1" class="sdi"> Pulmonary infarction or lung resection (not for malignancy) (+1)</label>
+
+<label><input type="checkbox" value="1" class="sdi"> Angina or coronary revascularization (+1)</label>
+
+<fieldset>
+<legend>Myocardial infarction, ever</legend>
+<label><input type="radio" name="infarction" value="1" class="sdi"> One episode (+1)</label>
+<label><input type="radio" name="infarction" value="2" class="sdi"> >1 episode (+2)</label>
+</fieldset>
+
+<label><input type="checkbox" value="1" class="sdi"> Pericarditis for 6 months, or pericardiectomy (+1)</label>
+<label><input type="checkbox" value="1" class="sdi"> Valvular disease (+1)</label>
+<label><input type="checkbox" value="1" class="sdi"> Cardiomyopathy (ventricular dysfunction) (+1)</label>
+<label><input type="checkbox" value="1" class="sdi"> Claudication (+1)</label>
+<label><input type="checkbox" value="1" class="sdi"> Peripheral ischemia with minor tissue loss (pulp space) (+1)</label>
+<fieldset>
+<legend>Peripheral ischemia with significant tissue loss (digit or limb), ever</legend>
+<label><input type="radio" name="infarction" value="1" class="sdi"> One site (+1)</label>
+<label><input type="radio" name="infarction" value="2" class="sdi"> >1 site (+2)</label>
+</fieldset>
+<label><input type="checkbox" value="1" class="sdi"> Venous thrombosis (+1)</label>
+</div>
+</div>
+</div>
+
+<!-- ================= GASTROINTESTINAL ================= -->
+
+<div class="organ">
+<div class="organTitle">Gastrointestinal</div>
+<div class="organGrid">
+
+<div>
+</div>
+
+<div>
+<fieldset>
+<legend>Infarction or resection of bowel below duodenum, spleen, liver, or gallbladder, ever</legend>
+<label><input type="radio" name="infarction" value="1" class="sdi"> One site (+1)</label>
+<label><input type="radio" name="infarction" value="2" class="sdi"> >1 site (+2)</label>
+</fieldset>
+<label><input type="checkbox" value="1" class="sdi"> Mesenteric insufficiency (+1)</label>
+<label><input type="checkbox" value="1" class="sdi"> Chronic peritonitis (+1)</label>
+<label><input type="checkbox" value="1" class="sdi"> Stricture or upper gastrointestinal tract surgery, ever (+1)</label>
+</div>
+</div>
+</div>
+
+<!-- ================= OTHER ================= -->
+<div class="organ">
+<div class="organTitle">Other</div>
+<div class="organGrid">
+
+<div>
+<label><input type="checkbox" value="8" class="sledai"> Vasculitis (cutaneous or extracutaneous) attributable to lupus (+8)</label>
+<label><input type="checkbox" value="1" class="sledai"> Fever >38ºC without infection (+1)</label>
+</div>
+
+<div>
+<label><input type="checkbox" value="1" class="sdi"> Diabetes (+1)</label>
+<label><input type="checkbox" value="1" class="sdi"> Premature ovarian failure (+1)</label>
+<fieldset>
+<legend>Malignancy</legend>
+<label><input type="radio" name="infarction" value="1" class="sdi"> One site (+1)</label>
+<label><input type="radio" name="infarction" value="2" class="sdi"> >1 site (+2)</label>
+</fieldset>
+</div>
+</div>
+</div>
+
+<!-- ================= LAB ================= -->
+
+
+<div class="organ">
+<div class="organTitle">Laboratory</div>
+<div class="organGrid">
+
+<div>
+<label><input type="checkbox" value="2" class="sledai"> Low complement (+2)</label>
+<label><input type="checkbox" value="2" class="sledai"> Increased anti-dsDNA (+2)</label>
+<label><input type="checkbox" value="1" class="sledai"> Thrombocytopenia &lt;100,000 (+1)</label>
+<label><input type="checkbox" value="1" class="sledai"> Leukopenia &lt;3,000 (+1)</label>
+</div>
+
+<div>
+</div>
+</div>
+</div>
+
+<!-- Separator before buttons -->
+<hr class="sectionSeparator">
+<!-- ================= Buttons ================= -->
+
+<div class="buttonContainer">
+  <button onclick="calculateSLEDAI()">Calculate SLEDAI-2K</button>
+  <button onclick="resetSLEDAI()">Reset SLEDAI</button>
+  <button onclick="calculateSDI()">Calculate SDI</button>
+  <button onclick="resetSDI()">Reset SDI</button>
+</div>
+
+<div class="resultContainer">
+  <div class="result" id="sledaiResult"></div>
+  <div class="result" id="sdiResult"></div>
+</div>
+
+<hr class="sectionSeparator">
+
+<div class="reference">
+
+Gladman DD et al. The SLEDAI-2K. J Rheumatol 2002.  
+Gladman DD et al. The SLICC/ACR Damage Index. Arthritis Rheum 1996.
+
+</div>
+
+</div>
+
+<script>
+
+function calculateSLEDAI(){
+
+    let score=0;
+
+    document.querySelectorAll(".sledai:checked").forEach(
+    box=>score+=parseInt(box.value)
+    );
+
+    document.getElementById("sledaiResult").innerHTML="SLEDAI-2K Score: "+score;
+
+    let activity="";
+    let style="";
+
+    if(score===0){
+    activity="Remission";
+    style="remission";
+    }
+    else if(score<=5){
+    activity="Mild activity";
+    style="mild";
+    }
+    else if(score<=10){
+    activity="Moderate activity";
+    style="moderate";
+    }
+    else if(score<=19){
+    activity="High activity";
+    style="high";
+    }
+    else{
+    activity="Very high activity";
+    style="veryhigh";
+    }
+
+    // Display score and badge inline
+    document.getElementById("sledaiResult").innerHTML = 
+    `SLEDAI-2K Score: ${score} <span class="badge ${style}">${activity}</span>`;
+}
+
+function resetSLEDAI(){
+document.querySelectorAll(".sledai").forEach(box=>box.checked=false);
+document.getElementById("sledaiResult").innerHTML="";
+document.getElementById("sledaiActivity").innerHTML="";
+}
+
+function calculateSDI(){
+
+let score=0;
+
+document.querySelectorAll(".sdi:checked").forEach(
+box=>score+=parseInt(box.value)
+);
+
+document.getElementById("sdiResult").innerHTML="SDI Score: "+score;
+
+}
+
+function resetSDI(){
+document.querySelectorAll(".sdi").forEach(box=>box.checked=false);
+document.getElementById("sdiResult").innerHTML="";
+}
+
+</script>
+
+</body>
+</html>
