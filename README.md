@@ -1,2 +1,2 @@
 # SLEDAI
-SLEDAI activity index in lupus
+SLEDAI + SDI lupus activity and damage score
